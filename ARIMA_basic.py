@@ -36,7 +36,8 @@ def fit_arima(train,p,q):
   This function fits an ARIMA(p,0,q) model, finds the AIC, and 
   appends a dictionary of the p,q, and AIC value for the model
   to the models list for later comparison
-  ```
+  '''
+  
   model = ARIMA(train, order = (p,0,q))
   model_fit = model.fit()
   aic = model_fit.aic
