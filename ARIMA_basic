@@ -7,7 +7,7 @@ from statsmodels.tsa.graphics.tsaplots import plot_pacf, plot_acf
 #for plotting (visual analysis)
 import matplotlib.pyplot as plt
 
-data = np.array('''set time series data, only needs 1 dimension''')
+data = np.array('''set time series data, only 1 dimension''')
 
 #check out raw data
 f = plt.figure()
