@@ -3,3 +3,6 @@ Time Series With Python
 
 # Purpose
 Create resources for basic analysis of time series data using Python
+
+# Modeling Methods Currently Provided:
+ - ARIMA
