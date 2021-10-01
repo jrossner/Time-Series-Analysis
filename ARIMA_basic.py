@@ -1,5 +1,6 @@
 #for data format
 import numpy as np
+import pandas as pd
 #for fitting arima model
 from statsmodels.tsa.arima.model import ARIMA
 #for checking acf and pacf plots
@@ -31,23 +32,33 @@ plot_pacf(train_set); #use semicolon to prevent duplicate plots
 
 #to compare AICs of multiple models:
 models = []
-def fit_arima(train,p,q):
+def fit_arima(train,p,d,q):
   '''
-  This function fits an ARIMA(p,0,q) model, finds the AIC, and 
-  appends a dictionary of the p,q, and AIC value for the model
-  to the models list for later comparison
+  This function fits an ARIMA(p,d,q) model, finds the AIC, and 
+  appends a dictionary of the p, d, q, and AIC value for the model
+  to the models list for later comparison.
+  NOTE: p,d,q should be integers!
   '''
   
-  model = ARIMA(train, order = (p,0,q))
+  model = ARIMA(train, order = (p,d,q))
   model_fit = model.fit()
   aic = model_fit.aic
-  models.append({'p': p, 'q': q, 'AIC': aic})
+  models.append({'p': p, 'd': d, 'q': q, 'AIC': aic})
   #ending function with print of summary to use for further parameter analysis
   print(model_fit.summary())
-  
+
+'''
+use the fit_arima() function on plausible p,d,q values 
+(general rule is not to go higher than d = 2 for stationary time series.)
+'''
+ 
+#find model with best AIC
+df = pd.DataFrame(models)
+lowest_AIC_model = df[df["AIC"] == df["AIC"].min()]
+best_p,best_d,best_q = int(lowest_AIC_model['p']), int(lowest_AIC_model['q'])
 
 #once best AIC has been found
-best_model = ARIMA(train_set, order = (best_p, 0, best_q))
+best_model = ARIMA(train_set, order = (best_p, best_d, best_q))
 best_fit = best_model.fit()
 
 #check out model
