@@ -63,7 +63,7 @@ best_fit = best_model.fit()
 
 #check out model
 print(f"The MSE of this model is: {best_fit.mse}")
-plt.plot(best_fit.resid)
+plt.hist(best_fit.resid)
 plt.show()
 
 #check fitted values against real values from training set
