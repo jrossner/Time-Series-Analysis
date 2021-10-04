@@ -20,15 +20,26 @@ plt.show()
 #set train and test set
 total_obs = len(data)
 trn_prop = 0.9 #percent of data set to use for training
-trn_length = round(trn_prop*total_obs, 0)
+trn_length = int(round(trn_prop*total_obs, 0))
 train_set = data[0:trn_length]
 test_set = data[trn_length:]
 
+#make series stationary to find possible d
+train_diff = np.array([0])
+for i in range(1,len(train_set)):
+  train_diff = np.append(train_diff,train_set[i]-train_set[i-1])
+  
+f = plt.figure()
+f.set_figwidth(15)
+f.set_figheight(3)
+plt.plot(train_diff)
+plt.show()
+
 #check acf plot for possible q values
-plot_acf(train_set); #use semicolon to prevent duplicate plots
+plot_acf(train_diff); #use semicolon to prevent duplicate plots
 
 #check pacf plot for possible p values
-plot_pacf(train_set); #use semicolon to prevent duplicate plots
+plot_pacf(train_diff); #use semicolon to prevent duplicate plot
 
 #to compare AICs of multiple models:
 models = []
