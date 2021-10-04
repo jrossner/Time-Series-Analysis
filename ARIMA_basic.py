@@ -12,8 +12,8 @@ data = np.array('''set time series data, only 1 dimension''')
 
 #check out raw data
 f = plt.figure()
-f.set_width(15)
-f.set_height(3)
+f.set_figwidth(15)
+f.set_figheight(3)
 plt.plot(data)
 plt.show()
 
