@@ -18,7 +18,7 @@ plt.plot(data)
 plt.show()
 
 #set train and test set
-lotal_obs = len(data)
+total_obs = len(data)
 trn_prop = 0.9 #percent of data set to use for training
 trn_length = round(trn_prop*total_obs, 0)
 train_set = data[0:trn_length]
