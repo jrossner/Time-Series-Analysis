@@ -4,7 +4,7 @@ import pandas as pd
 #for fitting arima model
 from statsmodels.tsa.arima.model import ARIMA
 #for checking acf and pacf plots
-from statsmodels.tsa.graphics.tsaplots import plot_pacf, plot_acf
+from statsmodels.graphics.tsaplots import plot_pacf, plot_acf
 #for plotting (visual analysis)
 import matplotlib.pyplot as plt
 
