@@ -3,6 +3,8 @@ import numpy as np
 import pandas as pd
 #for fitting arima model
 from statsmodels.tsa.arima.model import ARIMA
+#for checking stationarity
+from statsmodels.tsa.stattools import adfuller
 #for checking acf and pacf plots
 from statsmodels.graphics.tsaplots import plot_pacf, plot_acf
 #for plotting (visual analysis)
@@ -23,6 +25,9 @@ trn_prop = 0.9 #percent of data set to use for training
 trn_length = int(round(trn_prop*total_obs, 0))
 train_set = data[0:trn_length]
 test_set = data[trn_length:]
+
+#check stationarity:
+adfuller(train_set)
 
 #make series stationary to find possible d
 train_diff = np.array([0])
